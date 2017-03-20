@@ -14,4 +14,5 @@ class UsrContact < ApplicationRecord
     end
   end
   has_and_belongs_to_many :usr_vender_properties
+  has_one :usr_buyer
 end

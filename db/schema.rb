@@ -10,16 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170317063827) do
+ActiveRecord::Schema.define(version: 20170315100709) do
 
-  create_table "usr_contact_venders", force: :cascade do |t|
-    t.integer  "UsrContact_id"
-    t.integer  "UsrVenderProperty_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.index ["UsrContact_id"], name: "index_usr_contact_venders_on_UsrContact_id"
-    t.index ["UsrVenderProperty_id"], name: "index_usr_contact_venders_on_UsrVenderProperty_id"
-  end
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "usr_contacts", force: :cascade do |t|
     t.string   "name"
@@ -34,16 +28,17 @@ ActiveRecord::Schema.define(version: 20170317063827) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "image"
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.index ["confirmation_token"], name: "index_usr_contacts_on_confirmation_token", unique: true
-    t.index ["email"], name: "index_usr_contacts_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_usr_contacts_on_reset_password_token", unique: true
+    t.integer  "failed_attempts",        default: 0,  null: false
+    t.string   "unlock_token"
+    t.datetime "locked_at"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["email"], name: "index_usr_contacts_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_usr_contacts_on_reset_password_token", unique: true, using: :btree
   end
 
   create_table "usr_vender_properties", force: :cascade do |t|

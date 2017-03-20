@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  get 'buyer/index'
+
+  get 'buyer/new'
+
+  get 'buyer/create'
+
+  get 'buyer/edit'
+
+  get 'buyer/update'
+
+  get 'buyer/destroy'
+
   get 'usr_vender/registration'
 
   get 'usr_vender/index'
